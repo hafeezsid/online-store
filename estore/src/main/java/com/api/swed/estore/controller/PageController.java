@@ -16,6 +16,7 @@ import com.api.swed.estore.models.Category;
 import com.api.swed.estore.models.Product;
 
 @RestController
+@RequestMapping("/page")
 public class PageController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
