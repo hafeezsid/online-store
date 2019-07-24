@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @Configuration
-@ComponentScan(basePackages={"com.api.swed.estore"})
+@ComponentScan(basePackages={"com.api.swed.estore.models"})
 @EnableTransactionManagement
 public class HibernateConfig {
 

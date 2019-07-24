@@ -14,6 +14,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,23 +29,29 @@ public class Product implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(nullable = true)
 	private String code;
+	@Column(nullable = true)
 	private String name;
+	@Column(nullable = true)
 	private String brand;
-
+	@Column(nullable = true)
 	private String description;
-	@Column(name = "unit_price")
+	@Column(name = "unit_price",nullable = true)
 	private double unitPrice;
+	@Column(nullable = true)
 	private int quantity;
-	@Column(name = "is_active")	
+	@Column(name = "is_active",nullable = true)	
 	private boolean active;
-	@Column(name = "category_id")
+	@Column(name = "category_id",nullable = true)
 	@JsonIgnore
 	private int categoryId;
-	@Column(name = "supplier_id")
+	@Column(name = "supplier_id",nullable = true)
 	@JsonIgnore
 	private int supplierId;
+	@Column(nullable = true)
 	private int purchases;
+	@Column(nullable = true)
 	private int views;
 	
 	

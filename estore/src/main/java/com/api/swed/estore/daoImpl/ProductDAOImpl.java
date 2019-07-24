@@ -51,17 +51,18 @@ public class ProductDAOImpl implements ProductDAO {
 	 * INSERT
 	 * */
 	@Override
-	public boolean add(Product product) {
+	public Product add(Product product) {
 		try {			
 			sessionFactory
 					.getCurrentSession()
 						.persist(product);
-			return true;
+		
+			return product;
 		}
 		catch(Exception ex) {		
 			ex.printStackTrace();			
 		}		
-		return false;
+		return product;
 	}
 
 	/*

@@ -24,7 +24,6 @@ import com.api.swed.estore.models.Category;
 import com.api.swed.estore.models.Product;
 
 @RestController
-@RequestMapping("/manage")
 public class ManagementController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ManagementController.class);
@@ -36,23 +35,43 @@ public class ManagementController {
 	private CategoryDAO categoryDAO;		
 
 
-	@RequestMapping("/{id}/product")
+	@GetMapping("/product/{id}")
 	public Product manageProductEdit(@PathVariable int id) {		
-
-		// Product nProduct = new Product();	
+		System.out.println("productsList");
+		 Product nProduct = productDAO.get(id);	
 			
-		return productDAO.get(id);
+		return nProduct;
 		
 	}
 	
+	@GetMapping("/products")
+	public List<Product> productsList() {		
+			System.out.println("productsList");
+		 List<Product> productList = productDAO.list();	
+		 productList.stream().forEach(p->System.out.println(p.getCode()));
+			
+		return productList;
+		
+	}
 	
-	@PostMapping("/add/product")
-	public Map<String, Boolean> managePostProduct(@Valid @RequestBody Product mProduct) {
+	/*
+	 * @GetMapping(value="/") public String testApi() {
+	 * 
+	 * // Product nProduct = new Product();
+	 * 
+	 * return "working";
+	 * 
+	 * }
+	 */
+	
+	
+	@PostMapping(value="/add/product")
+	public Map<String, Product> managePostProduct(@Valid @RequestBody Product mProduct) {
 			System.out.println("add/product");
-		boolean status;
+			Product status;
 			status=productDAO.add(mProduct);
 		
-		 Map<String, Boolean> response = new HashMap<String, Boolean>();
+		 Map<String, Product> response = new HashMap<String, Product>();
 		    response.put("Product Add Status", status);
 		    return response;
 	}
