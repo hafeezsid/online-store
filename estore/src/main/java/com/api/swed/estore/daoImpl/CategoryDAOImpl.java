@@ -42,15 +42,15 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 
-	public boolean add(Category category) {
+	public Category add(Category category) {
 
 		try {
 			// add the category to the database table
 			sessionFactory.getCurrentSession().persist(category);
-			return true;
+			return category;
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return false;
+			return category;
 		}
 
 	}

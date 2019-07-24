@@ -36,11 +36,12 @@ public class ManagementController {
 
 
 	@GetMapping("/product/{id}")
-	public Product manageProductEdit(@PathVariable int id) {		
+	public Map<String, Product> manageProductEdit(@PathVariable int id) {		
 		System.out.println("productsList");
 		 Product nProduct = productDAO.get(id);	
-			
-		return nProduct;
+		 Map<String, Product> response = new HashMap<String, Product>();
+		    response.put("Product", nProduct);
+		    return response;
 		
 	}
 	
@@ -88,9 +89,19 @@ public class ManagementController {
 			
 
 	@PostMapping("/category")
-	public String managePostCategory(@ModelAttribute("category") Category mCategory, HttpServletRequest request) {					
-		categoryDAO.add(mCategory);		
-		return "redirect:" + request.getHeader("Referer") + "?success=category";
+	public Map<String, Category> managePostCategory(@Valid @RequestBody Category mCategory) {
+		Category ctg=categoryDAO.add(mCategory);		
+			Map<String, Category> response = new HashMap<String, Category>();
+			if(mCategory.getId()==0)
+			{
+		    response.put("Category Not Added", ctg);
+			}
+			else
+			{
+				response.put("Category Added Successfully", ctg);
+			}
+		    return response;
+		
 	}
 			
 	
