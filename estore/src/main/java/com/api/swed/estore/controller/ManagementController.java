@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.swed.estore.dao.CategoryDAO;
@@ -22,6 +23,7 @@ import com.api.swed.estore.models.Category;
 import com.api.swed.estore.models.Product;
 
 @RestController
+@RequestMapping("/manage")
 public class ManagementController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ManagementController.class);
@@ -34,12 +36,10 @@ public class ManagementController {
 
 
 	@GetMapping("/product/{id}")
-	public Map<String, Product> manageProductEdit(@PathVariable int id) {		
+	public Product manageProductEdit(@PathVariable long id) {		
 		System.out.println("productsList");
-		 Product nProduct = productDAO.get(id);	
-		 Map<String, Product> response = new HashMap<String, Product>();
-		    response.put("Product", nProduct);
-		    return response;
+		Product nProduct = productDAO.get(id);	
+		return nProduct;
 		
 	}
 	
@@ -52,17 +52,6 @@ public class ManagementController {
 		return productList;
 		
 	}
-	
-	/*
-	 * @GetMapping(value="/") public String testApi() {
-	 * 
-	 * // Product nProduct = new Product();
-	 * 
-	 * return "working";
-	 * 
-	 * }
-	 */
-	
 	
 	@PostMapping(value="/add/product")
 	public Map<String, Product> managePostProduct(@Valid @RequestBody Product mProduct) {

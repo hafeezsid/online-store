@@ -6,7 +6,7 @@ import com.api.swed.estore.models.Product;
 
 public interface ProductDAO {
 
-	Product get(int productId);
+	Product get(long productId);
 	List<Product> list();	
 	Product add(Product product);
 	boolean update(Product product);

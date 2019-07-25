@@ -33,11 +33,11 @@ public class DBInitializeConfig {
 			 * "('bharat0126','dbase123','Bharat','Verma'," +
 			 * " 'bharatverma2488@gmail.com','8861456151')" );
 			 */
-			
+		
 			statement.executeUpdate(
 					  "INSERT INTO product " +
-					  "(code,name,brand,quantity,unit_price,is_active,description,category_id,supplier_id,purchases,views) " + "VALUES " +
-					  "('bibi','dbase123','Bharat','20'," +
+					  "(id,code,name,brand,quantity,unit_price,is_active,description,category_id,supplier_id,purchases,views) " + "VALUES " +
+					  "('10','bibi','dbase123','Bharat','20'," +
 					  " '56','Y','ssdasd','123','1231','12','12')" );
 			statement.close();
 			connection.close();

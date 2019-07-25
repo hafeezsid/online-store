@@ -23,16 +23,17 @@ public class ProductDAOImpl implements ProductDAO {
 	 * */
 	
 	@Override
-	public Product get(int productId) {
+	public Product get(long productId) {
+		Product p=null;
 		try {			
-			return sessionFactory
+			p=(Product) sessionFactory
 					.getCurrentSession()
-						.get(Product.class,Integer.valueOf(productId));			
+						.get(Product.class,Long.valueOf(productId));			
 		}
 		catch(Exception ex) {		
 			ex.printStackTrace();			
 		}
-		return null;
+		return p;
 	}
 
 	/*
